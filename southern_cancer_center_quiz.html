@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Southern Cancer Center Nurse Quiz</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 20px; }
+  h1 { color: #2c3e50; }
+  .question { margin-bottom: 15px; }
+  .certificate { display: none; border: 2px solid #2c3e50; padding: 20px; margin-top: 20px; }
+  .btn { background-color: #2c3e50; color: white; padding: 10px 15px; border: none; cursor: pointer; }
+</style>
+</head>
+<body>
+<h1>Southern Cancer Center Nurse Quiz</h1>
+<p>Enter your name: <input type="text" id="nurseName" placeholder="Your Name"></p>
+<form id="quizForm">
+<div class='question'><p>1. What is defined as choosing a catheter-based on therapy length, vein condition, and experience?</p><input type='radio' name='q1' value='correct'> Correct Answer<br><input type='radio' name='q1' value='wrong'> Wrong Answer<br></div><div class='question'><p>2. What is the evaluation of age, condition, and infusion specifics before placing a PIV?</p><input type='radio' name='q2' value='correct'> Correct Answer<br><input type='radio' name='q2' value='wrong'> Wrong Answer<br></div><div class='question'><p>3. Per ONS, it’s advised to use the smallest, shortest catheter that accommodates minimal trauma to the vessel intima, reduces irritation, and permits better hemodilution. What is the appropriate consideration for gauge selection?</p><input type='radio' name='q3' value='correct'> Correct Answer<br><input type='radio' name='q3' value='wrong'> Wrong Answer<br></div><div class='question'><p>4. What defines the movement of the peripheral catheter within the vein?</p><input type='radio' name='q4' value='correct'> Correct Answer<br><input type='radio' name='q4' value='wrong'> Wrong Answer<br></div><div class='question'><p>5. What is it called when a substance counteracts the effects of a toxin?</p><input type='radio' name='q5' value='correct'> Correct Answer<br><input type='radio' name='q5' value='wrong'> Wrong Answer<br></div><div class='question'><p>6. What are considered the preferred sites for PIV for chemotherapy administration?</p><input type='radio' name='q6' value='correct'> Correct Answer<br><input type='radio' name='q6' value='wrong'> Wrong Answer<br></div><div class='question'><p>7. When placing a PIV, what is the acceptable catheter length that should reside in the vessel to prevent inadvertent dislodgment and infiltration?</p><input type='radio' name='q7' value='correct'> Correct Answer<br><input type='radio' name='q7' value='wrong'> Wrong Answer<br></div><div class='question'><p>8. When administering a vesicant or non-vesicant chemotherapy SIVP, how often should blood return be verified?</p><input type='radio' name='q8' value='correct'> Correct Answer<br><input type='radio' name='q8' value='wrong'> Wrong Answer<br></div><div class='question'><p>9. What sites should be avoided when placing a PIV for chemotherapy administration?</p><input type='radio' name='q9' value='correct'> Correct Answer<br><input type='radio' name='q9' value='wrong'> Wrong Answer<br></div><div class='question'><p>10. What can be used to assess the depth, health, and size of vessels?</p><input type='radio' name='q10' value='correct'> Correct Answer<br><input type='radio' name='q10' value='wrong'> Wrong Answer<br></div><div class='question'><p>11. What should be changed every seven days if wet, soiled, or non-occlusive?</p><input type='radio' name='q11' value='correct'> Correct Answer<br><input type='radio' name='q11' value='wrong'> Wrong Answer<br></div><div class='question'><p>12. What is defined as microbiological tests of wound samples?</p><input type='radio' name='q12' value='correct'> Correct Answer<br><input type='radio' name='q12' value='wrong'> Wrong Answer<br></div><div class='question'><p>13. Proper gauge and length of catheter decrease the risk of chemical phlebitis (irritation of vein wall by medications) by providing hemodilution around the cannula.</p><input type='radio' name='q13' value='correct'> Correct Answer<br><input type='radio' name='q13' value='wrong'> Wrong Answer<br></div><div class='question'><p>14. What is less desirable for infusion through PIVs?</p><input type='radio' name='q14' value='correct'> Correct Answer<br><input type='radio' name='q14' value='wrong'> Wrong Answer<br></div><div class='question'><p>15. What is defined as the irritation of the vein wall by medications?</p><input type='radio' name='q15' value='correct'> Correct Answer<br><input type='radio' name='q15' value='wrong'> Wrong Answer<br></div><div class='question'><p>16. What is defined as an infiltration of vesicants capable of causing sloughing or blistering from the vein into the surrounding soft tissue?</p><input type='radio' name='q16' value='correct'> Correct Answer<br><input type='radio' name='q16' value='wrong'> Wrong Answer<br></div><div class='question'><p>17. What involves strict aseptic technique and regular assessment?</p><input type='radio' name='q17' value='correct'> Correct Answer<br><input type='radio' name='q17' value='wrong'> Wrong Answer<br></div><div class='question'><p>18. What is the proper management of an infiltration?</p><input type='radio' name='q18' value='correct'> Correct Answer<br><input type='radio' name='q18' value='wrong'> Wrong Answer<br></div><div class='question'><p>19. What is the proper management of an extravasation?</p><input type='radio' name='q19' value='correct'> Correct Answer<br><input type='radio' name='q19' value='wrong'> Wrong Answer<br></div><div class='question'><p>20. Flush before and after each use, using a minimum of twice the catheter fill volume, typically 1-3 ml preservative-free 0.9% sodium chloride solution.</p><input type='radio' name='q20' value='correct'> Correct Answer<br><input type='radio' name='q20' value='wrong'> Wrong Answer<br></div>
+<button type="button" class="btn" onclick="calculateScore()">Submit Quiz</button>
+</form>
+<div class="certificate" id="certificate">
+  <h2>Certificate of Completion</h2>
+  <p>Name: <span id="certName"></span></p>
+  <p>Date: <span id="certDate"></span></p>
+  <p>Score: <span id="certScore"></span></p>
+  <p>Status: <span id="certStatus"></span></p>
+  <button onclick="window.print()" class="btn">Print Certificate</button>
+</div>
+<script>
+function calculateScore() {
+  var total = 20;
+  var score = 0;
+  for (var i = 1; i <= total; i++) {
+    var radios = document.getElementsByName('q' + i);
+    for (var j = 0; j < radios.length; j++) {
+      if (radios[j].checked && radios[j].value === 'correct') {
+        score++;
+      }
+    }
+  }
+  var name = document.getElementById('nurseName').value;
+  var date = new Date().toLocaleDateString();
+  document.getElementById('certName').innerText = name;
+  document.getElementById('certDate').innerText = date;
+  document.getElementById('certScore').innerText = score + '/' + total;
+  document.getElementById('certStatus').innerText = (score >= 18) ? 'PASS' : 'FAIL';
+  document.getElementById('certificate').style.display = 'block';
+}
+</script>
+</body>
+</html>
